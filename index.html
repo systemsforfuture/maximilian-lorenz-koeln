@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maximilian Lorenz — Köln</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080A;
+    --bg2: #0C0E12;
+    --bg3: #111418;
+    --accent: #7BA05B;
+    --accent2: #9EC278;
+    --accent-dim: rgba(123,160,91,0.12);
+    --accent-glow: rgba(123,160,91,0.25);
+    --gold: #C8A96A;
+    --gold2: #E0C88A;
+    --gold-dim: rgba(200,169,106,0.12);
+    --text: #EAE8E4;
+    --text2: #A8A6A2;
+    --text3: #6A6866;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Subtle botanical grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 70px 70px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, padding 0.4s, border-bottom 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(7,8,10,0.96);
+    backdrop-filter: blur(20px);
+    padding: 16px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+  .nav-cta {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 10px 22px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Large watermark "ML" */
+  .hero::before {
+    content: 'ML';
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: 42vw;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.03;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 70px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .michelin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(200,169,106,0.3);
+    padding: 6px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold2);
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+  .michelin-badge::before {
+    content: '★';
+    font-size: 0.9rem;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text2);
+    margin-bottom: 36px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--text2);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-outline {
+    padding: 14px 32px;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* HERO RIGHT — Stats Panel */
+  .hero-panel {
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 50px 80px;
+    position: relative;
+    z-index: 1;
+    gap: 0;
+  }
+  .hero-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .stat-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--accent2);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* SECTION SHARED */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .section-title em { font-style: italic; color: var(--accent2); }
+
+  /* PHILOSOPHY */
+  .philosophy {
+    padding: 120px 60px;
+    background: var(--bg);
+  }
+  .philosophy-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .philosophy-quote {
+    position: relative;
+    padding-top: 40px;
+  }
+  .philosophy-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: var(--serif);
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.2;
+  }
+  .quote-text {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .quote-attr {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .philosophy-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .philosophy-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .philosophy-card:hover { border-color: var(--accent-dim); }
+  .philosophy-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .philo-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .philo-text {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* STRASSENKÜCHE */
+  .strasseküche {
+    padding: 120px 60px;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+  .strasseküche::before {
+    content: 'STRASSE';
+    position: absolute;
+    left: -30px;
+    bottom: -20px;
+    font-family: var(--serif);
+    font-size: 22vw;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.025;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+  }
+  .strasseküche-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .strasseküche-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 64px;
+  }
+  .strasseküche-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .strasseküche-tag {
+    display: inline-block;
+    background: var(--accent-dim);
+    border: 1px solid rgba(123,160,91,0.25);
+    color: var(--accent2);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    width: fit-content;
+    margin-bottom: 8px;
+  }
+  .strasseküche-title {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .strasseküche-text {
+    font-size: 0.92rem;
+    color: var(--text2);
+    line-height: 1.75;
+  }
+  .sk-hours-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .sk-hours-icon {
+    font-size: 1.8rem;
+    opacity: 0.6;
+  }
+  .sk-hours-detail strong {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+  .sk-hours-detail span {
+    font-size: 0.88rem;
+    color: var(--text2);
+  }
+
+  /* SK dishes */
+  .sk-dishes {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .sk-dish {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    transition: padding-left 0.2s;
+  }
+  .sk-dish:first-child { padding-top: 0; }
+  .sk-dish:hover { padding-left: 8px; }
+  .sk-dish-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .sk-dish-desc {
+    font-size: 0.78rem;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .sk-dish-price {
+    font-size: 0.88rem;
+    color: var(--accent2);
+    white-space: nowrap;
+    margin-left: 20px;
+    flex-shrink: 0;
+  }
+
+  /* SPEISEKARTE */
+  .speisekarte {
+    padding: 120px 60px;
+    background: var(--bg);
+  }
+  .speisekarte-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 64px;
+  }
+  .menu-col {
+    background: var(--bg2);
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .menu-col:hover { border-color: rgba(123,160,91,0.2); }
+  .menu-col-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu-col-icon { font-size: 1rem; opacity: 0.4; }
+  .menu-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .menu-item-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .menu-item-price {
+    font-size: 0.82rem;
+    color: var(--accent2);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .menu-item-desc {
+    font-size: 0.76rem;
+    color: var(--text3);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* Grand Menu highlight */
+  .grand-menu {
+    padding: 120px 60px;
+    background: var(--bg2);
+  }
+  .grand-menu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .grand-menu-layout {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .gm-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gm-card.featured {
+    background: linear-gradient(135deg, #0D1209 0%, var(--bg3) 100%);
+    border-color: rgba(123,160,91,0.3);
+  }
+  .gm-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+  }
+  .gm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .gm-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .gm-price {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--accent2);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .gm-desc {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+  .gm-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gm-course {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.84rem;
+    color: var(--text2);
+  }
+  .gm-course::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .gm-reserve-btn {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .gm-reserve-btn:hover { background: var(--accent2); }
+
+  /* AWARDS */
+  .awards {
+    padding: 80px 60px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .awards-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .award-item {
+    text-align: center;
+    padding: 0 30px;
+    border-right: 1px solid var(--border);
+  }
+  .award-item:last-child { border-right: none; }
+  .award-icon {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .award-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .award-desc {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* ÖFFNUNGSZEITEN & CONTACT */
+  .contact {
+    padding: 120px 60px;
+    background: var(--bg2);
+  }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+  .contact-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 48px 40px;
+    transition: border-color 0.3s;
+  }
+  .contact-card:hover { border-color: rgba(123,160,91,0.2); }
+  .contact-card-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contact-card-title span { font-size: 1rem; opacity: 0.5; }
+  .hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+  }
+  .hours-day { color: var(--text2); }
+  .hours-time { color: var(--text); font-weight: 400; }
+  .hours-closed { color: var(--text3); font-style: italic; }
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+  .detail-value {
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .detail-value a {
+    color: var(--accent2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .detail-value a:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text2);
+  }
+  .footer-logo span { color: var(--accent2); }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--text3);
+    letter-spacing: 0.06em;
+  }
+  .footer-award {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--gold2);
+    letter-spacing: 0.1em;
+  }
+  .footer-award::before { content: '★'; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-content { padding: 120px 24px 48px; }
+    .hero-panel { display: none; }
+    .hero::before { display: none; }
+    .hero-title { font-size: 3rem; }
+    .philosophy { padding: 72px 24px; }
+    .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
+    .strasseküche { padding: 72px 24px; }
+    .strasseküche-grid { grid-template-columns: 1fr; gap: 40px; }
+    .speisekarte { padding: 72px 24px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .grand-menu { padding: 72px 24px; }
+    .grand-menu-layout { grid-template-columns: 1fr; }
+    .awards { padding: 48px 24px; }
+    .contact { padding: 72px 24px; }
+    .contact-inner { grid-template-columns: 1fr; }
+    footer { padding: 28px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    .awards-inner { gap: 32px; }
+    .award-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; width: 100%; }
+    .award-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Maximilian <span>Lorenz</span></a>
+  <ul class="nav-links">
+    <li><a href="#philosophie">Philosophie</a></li>
+    <li><a href="#strassenküche">Straßenküche</a></li>
+    <li><a href="#menu">Menü</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="tel:+4922137999192" class="nav-cta">Reservierung</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="michelin-badge">1 Michelin Stern · Köln</div>
+    <h1 class="hero-title">Maximilian<br><em>Lorenz</em></h1>
+    <p class="hero-subtitle">Straßenküche trifft Fine Dining</p>
+    <p class="hero-desc">
+      Im Herzen Kölns verbindet Küchenchef Maximilian Lorenz die pulsierende Energie
+      internationaler Straßenküchen mit der Präzision der Haute Cuisine.
+      Eine Reise durch Aromen — bodenständig, mutig, ausgezeichnet.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+4922137999192" class="btn-primary">Tisch reservieren</a>
+      <a href="#menu" class="btn-outline">Menü ansehen</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="stat-item">
+      <div class="stat-num">★</div>
+      <div class="stat-label">Michelin Stern</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Di–Sa</div>
+      <div class="stat-label">Abendküche · 18–22 Uhr</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Mo–Fr</div>
+      <div class="stat-label">Straßenküche · 11:30–14:30</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Köln</div>
+      <div class="stat-label">Johannisstraße 64</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophie">
+  <div class="philosophy-grid">
+    <div class="philosophy-quote">
+      <p class="quote-text">
+        Straßenküche ist die ehrlichste Form des Kochens —
+        direkt, leidenschaftlich und ohne Filter.
+        Wir bringen diese Energie in die Küche und verfeinern sie.
+      </p>
+      <span class="quote-attr">— Maximilian Lorenz, Küchenchef</span>
+    </div>
+    <div class="philosophy-right">
+      <div class="philosophy-card">
+        <h3 class="philo-title">Regionale Basis</h3>
+        <p class="philo-text">
+          Heimische Produzenten und saisonale Erzeugnisse aus dem Rheinland bilden
+          das Fundament. Kurze Wege, maximale Frische — von der Farm direkt auf den Teller.
+        </p>
+      </div>
+      <div class="philosophy-card">
+        <h3 class="philo-title">Internationale Einflüsse</h3>
+        <p class="philo-text">
+          Gewürze und Techniken aus Asien, Südamerika und dem Mittelmeerraum
+          treffen auf die kölsche Küchentradition. Eine ehrliche, mutige Fusion.
+        </p>
+      </div>
+      <div class="philosophy-card">
+        <h3 class="philo-title">Handwerk & Präzision</h3>
+        <p class="philo-text">
+          Jedes Gericht ist das Ergebnis von Recherche, Reise und Respekt
+          vor dem Original. Michelin-Stern-Qualität in jedem Detail.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRABENKÜCHE -->
+<section class="strasseküche" id="strassenküche">
+  <div class="strasseküche-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Das Mittagskonzept</span>
+      <h2 class="section-title">Die <em>Straßenküche</em></h2>
+    </div>
+    <div class="strasseküche-grid">
+      <div class="strasseküche-info">
+        <div>
+          <span class="strasseküche-tag">Mo – Fr · 11:30 – 14:30 Uhr</span>
+          <h3 class="strasseküche-title">Fine-Dining<br>zu Mittagspreisen</h3>
+          <p class="strasseküche-text">
+            Die Straßenküche ist das demokratische Gegenstück zum Abendmenü.
+            Täglich wechselnde Gerichte inspiriert von Streetfood-Kulturen weltweit —
+            präzise gekocht, zugänglich in der Preisgestaltung. Für alle, die Großes
+            in der Mittagspause erleben wollen.
+          </p>
+        </div>
+        <div class="sk-hours-box">
+          <div class="sk-hours-icon">🕐</div>
+          <div class="sk-hours-detail">
+            <strong>Öffnungszeiten</strong>
+            <span>Montag bis Freitag · 11:30 – 14:30 Uhr</span>
+          </div>
+        </div>
+      </div>
+      <div class="sk-dishes">
+        <div class="sk-dish">
+          <div>
+            <div class="sk-dish-name">Banh Mi des Tages</div>
+            <div class="sk-dish-desc">Vietnamesisches Baguette · tägl. wechselnde Füllung</div>
+          </div>
+          <div class="sk-dish-price">ab €12</div>
+        </div>
+        <div class="sk-dish">
+          <div>
+            <div class="sk-dish-name">Taco Maximiliano</div>
+            <div class="sk-dish-desc">Hausgemachte Tortilla · Rheinischer Sauerbraten-Interpretation</div>
+          </div>
+          <div class="sk-dish-price">€14</div>
+        </div>
+        <div class="sk-dish">
+          <div>
+            <div class="sk-dish-name">Bowl der Saison</div>
+            <div class="sk-dish-desc">Regionales Gemüse · asiatisch-mediterranes Dressing</div>
+          </div>
+          <div class="sk-dish-price">€16</div>
+        </div>
+        <div class="sk-dish">
+          <div>
+            <div class="sk-dish-name">Curry vom Markt</div>
+            <div class="sk-dish-desc">Tägl. wechselnd · Reis · Koriander-Chili-Öl</div>
+          </div>
+          <div class="sk-dish-price">€15</div>
+        </div>
+        <div class="sk-dish">
+          <div>
+            <div class="sk-dish-name">Dessert des Tages</div>
+            <div class="sk-dish-desc">Patisserie-Qualität · schnell & unkompliziert</div>
+          </div>
+          <div class="sk-dish-price">€8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEISEKARTE ABEND -->
+<section class="speisekarte" id="menu">
+  <div class="speisekarte-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Abendkarte</span>
+      <h2 class="section-title">À <em>la Carte</em></h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col">
+        <div class="menu-col-title">
+          Vorspeisen
+          <span class="menu-col-icon">◈</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Tatar vom Kölner Weiderind</span>
+            <span class="menu-item-price">€22</span>
+          </div>
+          <div class="menu-item-desc">Gelbwurzel-Creme · Kapern-Emulsion · Roggen-Chip</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Geeiste Gurke</span>
+            <span class="menu-item-price">€18</span>
+          </div>
+          <div class="menu-item-desc">Sake-Dashi · Dill-Öl · Forellen-Kaviar</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Bärenlauch-Ravioli</span>
+            <span class="menu-item-price">€20</span>
+          </div>
+          <div class="menu-item-desc">Manchego-Schaum · geröstete Haselnuss · Trüffelöl</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Jakobsmuschel</span>
+            <span class="menu-item-price">€28</span>
+          </div>
+          <div class="menu-item-desc">Blumenkohl-Couscous · Yuzu-Beurre-blanc · Bottarga</div>
+        </div>
+      </div>
+      <div class="menu-col">
+        <div class="menu-col-title">
+          Hauptgänge
+          <span class="menu-col-icon">◈</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Kalbsfilet Miso-glasiert</span>
+            <span class="menu-item-price">€48</span>
+          </div>
+          <div class="menu-item-desc">Schwarzwurzel-Tempura · Kimchi-Butter · Kräuteröl</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Steinbutt aus der Bretagne</span>
+            <span class="menu-item-price">€52</span>
+          </div>
+          <div class="menu-item-desc">Artischocke · Verjus-Beurre-blanc · Kaviar-Sabayon</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Rheinische Ente</span>
+            <span class="menu-item-price">€44</span>
+          </div>
+          <div class="menu-item-desc">Rote Bete · Orangenzeste · Kardamom-Jus</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Veganes Signature</span>
+            <span class="menu-item-price">€38</span>
+          </div>
+          <div class="menu-item-desc">Tägl. wechselnd · regional & saisonal</div>
+        </div>
+      </div>
+      <div class="menu-col">
+        <div class="menu-col-title">
+          Desserts
+          <span class="menu-col-icon">◈</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Schokolade 72%</span>
+            <span class="menu-item-price">€18</span>
+          </div>
+          <div class="menu-item-desc">Fleur de Sel · Espelette-Karamell · Tonkabohnen-Eis</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Zitronen-Verbene</span>
+            <span class="menu-item-price">€16</span>
+          </div>
+          <div class="menu-item-desc">Yuzu-Curd · Baiser · Himbeere-Sorbet</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Käseauswahl</span>
+            <span class="menu-item-price">€22</span>
+          </div>
+          <div class="menu-item-desc">5 regionale & internationale Sorten · Brot · Chutney</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-top">
+            <span class="menu-item-name">Mignardises</span>
+            <span class="menu-item-price">inkl.</span>
+          </div>
+          <div class="menu-item-desc">Hausgemachte Petits Fours zum Menü</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAND MENU -->
+<section class="grand-menu">
+  <div class="grand-menu-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Das volle Erlebnis</span>
+      <h2 class="section-title">Degustations<em>menüs</em></h2>
+    </div>
+    <div class="grand-menu-layout">
+      <div class="gm-card">
+        <h3 class="gm-title">Entdeckungsmenü</h3>
+        <span class="gm-price">€95 p.P.</span>
+        <p class="gm-desc">
+          Fünf Gänge durch die Welt der Straßenküche — fine dining interpretiert,
+          saisonal und direkt. Weinbegleitung auf Anfrage.
+        </p>
+        <div class="gm-courses">
+          <div class="gm-course">Amuse Bouche</div>
+          <div class="gm-course">Kalt · Warm · Hauptgang</div>
+          <div class="gm-course">Käse oder Predessert</div>
+          <div class="gm-course">Dessert & Mignardises</div>
+        </div>
+        <a href="tel:+4922137999192" class="gm-reserve-btn">Jetzt buchen</a>
+      </div>
+      <div class="gm-card featured">
+        <div class="gm-badge">★ Empfohlen</div>
+        <h3 class="gm-title">Signature Menü</h3>
+        <span class="gm-price">€145 p.P.</span>
+        <p class="gm-desc">
+          Sieben Gänge — die vollständige kreative Vision von Maximilian Lorenz.
+          Eine Abendreise durch Kulturen, Techniken und Geschmäcker.
+          Mit optionaler Weinbegleitung (€85).
+        </p>
+        <div class="gm-courses">
+          <div class="gm-course">Amuse Bouche Selektion</div>
+          <div class="gm-course">Zwei Kalt-Gänge</div>
+          <div class="gm-course">Zwei Warm-Gänge · Hauptgang</div>
+          <div class="gm-course">Predessert & Dessert</div>
+          <div class="gm-course">Mignardises & Café</div>
+        </div>
+        <a href="tel:+4922137999192" class="gm-reserve-btn">Jetzt buchen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS BAR -->
+<section class="awards">
+  <div class="awards-inner">
+    <div class="award-item">
+      <span class="award-icon">★</span>
+      <div class="award-name">Michelin Stern</div>
+      <div class="award-desc">Ausgezeichnete Küche</div>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">◆</span>
+      <div class="award-name">Gault&Millau</div>
+      <div class="award-desc">Top-Auszeichnung</div>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">🌿</span>
+      <div class="award-name">Nachhaltig</div>
+      <div class="award-desc">Regionale Produzenten</div>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">◉</span>
+      <div class="award-name">Seit 2019</div>
+      <div class="award-desc">Straßenküche · Fine Dining</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="section-header" style="margin-bottom: 48px;">
+    <span class="section-eyebrow">Besuchen Sie uns</span>
+    <h2 class="section-title">Reservierung &<br><em>Kontakt</em></h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-card">
+      <h3 class="contact-card-title"><span>🕐</span> Abendküche</h3>
+      <div class="hours-list">
+        <div class="hours-row">
+          <span class="hours-day">Dienstag</span>
+          <span class="hours-time">18:00 – 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Mittwoch</span>
+          <span class="hours-time">18:00 – 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Donnerstag</span>
+          <span class="hours-time">18:00 – 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Freitag</span>
+          <span class="hours-time">18:00 – 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Samstag</span>
+          <span class="hours-time">18:00 – 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Montag / Sonntag</span>
+          <span class="hours-closed">geschlossen</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h3 class="contact-card-title"><span>🌿</span> Straßenküche</h3>
+      <div class="hours-list" style="margin-bottom: 24px;">
+        <div class="hours-row">
+          <span class="hours-day">Montag – Freitag</span>
+          <span class="hours-time">11:30 – 14:30</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Samstag / Sonntag</span>
+          <span class="hours-closed">geschlossen</span>
+        </div>
+      </div>
+      <div style="padding-top: 20px; border-top: 1px solid var(--border);">
+        <div class="detail-row" style="margin-bottom: 12px;">
+          <span class="detail-label">Lunch-Angebote</span>
+          <span class="detail-value">Täglich wechselnde Gerichte · ab €12</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Walk-In möglich</span>
+          <span class="detail-value">Mittags ohne Reservierung willkommen</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h3 class="contact-card-title"><span>📍</span> Anfahrt & Kontakt</h3>
+      <div class="contact-detail">
+        <div class="detail-row">
+          <span class="detail-label">Adresse</span>
+          <span class="detail-value">Johannisstraße 64<br>50668 Köln</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Telefon</span>
+          <span class="detail-value"><a href="tel:+4922137999192">0221 37999192</a></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Reservierung</span>
+          <span class="detail-value"><a href="tel:+4922137999192">Telefonisch empfohlen</a></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">ÖPNV</span>
+          <span class="detail-value">U-Bahn Ebertplatz · 2 min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Maximilian <span>Lorenz</span></div>
+  <div class="footer-copy">© 2025 · Johannisstraße 64 · 50668 Köln</div>
+  <div class="footer-award">1 Michelin Stern · Köln</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
+</body>
+</html>
